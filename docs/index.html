@@ -1,1 +1,193 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name=viewport content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="theme-color" content="#9ccc65"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<link rel="apple-touch-icon" href="favicon.ico">
+<link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.light_blue-red.min.css" />
+<style>
+html,body{
+font-family: 'Roboto', Noto Serif, sans-serif;
+background-color:#ebebeb;
+}
+main{
+width:100%;
+}
+
+.center{
+text-align:center;
+}
+.loader-bg{
+z-index:500;
+position:absolute;
+height:100%;
+width:100%;
+display:none;
+}
+.loader{
+position: absolute;
+top:40%;
+left:0;
+right:0;
+margin: auto;
+text-align:center;
+}
+
+.card-center{
+margin-left:auto;margin-right:auto;
+}
+
+.margin-card{
+  margin-top:5px;
+  margin-bottom:15px;
+}
+#ninja_ads{
+  width:100%;
+}
+footer{
+margin-bottom:0px;
+bottom:0;
+}
+.bmzero{
+margin-bottom:0px;
+bottom:0;
+}
+body{
+margin-bottom:0px;
+bottom:0;
+}
+.width-max{
+	width: 100%;
+}
+.con{
+color:#cddc39;
+}
+.ok{
+color:#4caf50;
+}
+.ng{
+color:#f44336;
+}
+
+</style>
+<script>
+window.addEventListener("load",function(){var a=location.href;a.match(/^https:/)||(a=a.replace(/^[^:]+:/,"https:"),location.href=a)},!1);
+</script>
+<title>maa123's Dev Page-status</title>
+</head>
+<body>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header bmzero">
+  <header class="mdl-layout__header  mdl-layout--fixed-header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Servers Status</span>
+      <div class="mdl-layout-spacer"></div>
+    </div>
+  </header>
+<main class="main">
+<div class="mdl-grid">
+  <div class="mdl-card mdl-shadow--2dp card-center margin-card  mdl-cell--6-col mdl-cell--12-col-phone">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Status</h2>
+    </div>
+    <div class="mdl-card__supporting-text mdl-color-text--grey-900">
+			<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp width-max">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">server</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">Server 1</td>
+      <td id="ss0"><span class="con">接続中...</span></td>
+    </tr>
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">Server 2</td>
+      <td id="ss1"><span class="con">接続中...</span></td>
+    </tr>
+		<tr>
+      <td class="mdl-data-table__cell--non-numeric">Server 3</td>
+      <td id="ss2"><span class="con">接続中...</span></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+    <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate width-max"></div>
+  </div>
+</div>
+<div class="mdl-grid">
+  <div class="mdl-card mdl-shadow--2dp card-center margin-card  mdl-cell--6-col mdl-cell--12-col-phone">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Status</h2>
+    </div>
+    <div class="mdl-card__supporting-text mdl-color-text--grey-900">
+			<p>このページにアクセス出来ない時は <a href="https://status.maa123.gq">サーバー 1</a> や  <a href="https://status2.maa123.gq">サーバー 2</a> でステータスが確認できます</p>
+    </div>
+    <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate width-max"></div>
+  </div>
+</div>
+
+</main>
+<div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>
+
+<footer class="mdl-mini-footer" style="display:none;">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">maa123's HP</div>
+    <ul class="mdl-mini-footer__link-list">
+      <li><a href="#"></a></li>
+    </ul>
+  </div>
+</footer>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script defer src="https://code.getmdl.io/1.2.0/material.min.js"></script>
+<script>
+function gcd(num){
+$('#ss'+num).html('<span class="con">接続中...</span>');
+$.ajax({
+type:'POST',
+url:'https://status.maa123.gq/status.php',
+data:{'sv':''+num},
+timeout:15000
+}).done(function(d){
+$('#ss'+num).html(d);
+}).fail(function(){
+//$('#ss'+num).html('disconect');
+gcda(num);
+});
+}
+function gcda(num){
+$('#ss'+num).html('<span class="con">接続中...</span>');
+$.ajax({
+type:'POST',
+url:'https://status2.maa123.gq/status.php',
+data:{'sv':''+num},
+timeout:15000
+}).done(function(d){
+$('#ss'+num).html(d);
+}).fail(function(){
+$('#ss'+num).html('disconect');
+});
+}
+$(function(){
+	gcd(0);
+	gcd(1);
+	gcd(2);
+});
+</script>
+</body>
+</html>
